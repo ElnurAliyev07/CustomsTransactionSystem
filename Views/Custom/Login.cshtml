@@ -1,0 +1,55 @@
+﻿@{
+	ViewBag.Title = "Login";
+	Layout = "~/Views/_index.cshtml";
+}
+
+<h1 style="color:ccc;">Dövlət Gömrük Komitəsi</h1>
+
+<div class="w3ls-login box box--big">
+	@if (TempData["ErrorMessage"] != null)
+	{
+		<div class="alert alert-danger w3ls-login" role="alert" style="position:absolute; color:#ccc; font-size:18px; font-weight:600; margin-top:-22rem; padding:3px; background-color:chocolate">
+			@TempData["ErrorMessage"]
+		</div>
+	}
+	<!-- form starts here -->
+	<form asp-controller="Custom" asp-action="Verify" method="post" autocomplete="off">
+		<div class="agile-field-txt">
+			<label><i class="fa fa-user" aria-hidden="true"></i> Username </label>
+			<input type="text" name="Name" placeholder="Enter User Name" required="" />
+		</div>
+		<div class="agile-field-txt">
+			<label><i class="fa fa-unlock-alt" aria-hidden="true"></i> password </label>
+			<input type="password" name="Password" placeholder="Enter Password" required="" id="myInput" />
+			<div class="agile_label">
+				<input id="check3" name="check3" type="checkbox" value="show password" onclick="myFunction()">
+				<label class="check" for="check3">Show password</label>
+			</div>
+			<div class="agile-right">
+				<a href="#">forgot password?</a>
+			</div>
+		</div>
+		<!-- script for show password -->
+		<script>
+			function myFunction() {
+				var x = document.getElementById("myInput");
+				if (x.type === "password") {
+					x.type = "text";
+				} else {
+					x.type = "password";
+				}
+			}
+		</script>
+		<!-- //end script -->
+		<input type="submit" value="LOGIN">
+	</form>
+</div>
+<!-- //form ends here -->
+<!--copyright-->
+<div class="copy-wthree">
+	<p>
+		© 2024 Custom Login Form . All Rights Reserved | Design by
+		<a href="https://www.linkedin.com/in/elnur-aliyev-a17160265/" target="_blank">Elnur</a>
+	</p>
+</div>
+<!--//copyright-->

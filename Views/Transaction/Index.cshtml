@@ -1,0 +1,63 @@
+﻿@model IEnumerable<CustomsTransactionSystem.Models.Transaction>
+
+@{
+    ViewBag.Title = "Transactions";
+    Layout = "~/Views/Shared/_Index1.cshtml";
+}
+
+<div class="container mt-5">
+    <h1>Transactions</h1>
+    <div class="row mb-3">
+        <div class="col-md-6">
+            <form asp-action="Index" method="get" autocomplete="off" class="d-flex">
+                <input type="text" class="form-control mr-2" placeholder="Search by Product Code" name="searchString">
+                <button type="submit" class="btn btn-primary">Search</button>
+            </form>
+        </div>
+        <div class="col-md-6 text-right">
+            <a asp-action="ExportToExcel" asp-route-searchString="@ViewData["SearchString"]" class="btn btn-success">Export to Excel</a>
+            <a asp-action="AddOrEdit" class="btn btn-primary ml-2"><i class="fas fa-plus"></i> New Transaction</a>
+        </div>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.ProductCode)</th>
+                    <th>@Html.DisplayNameFor(model => model.ProductName)</th>
+                    <th>@Html.DisplayNameFor(model => model.CountryName)</th>
+                    <th>@Html.DisplayNameFor(model => model.CountryCode)</th>
+                    <th>@Html.DisplayNameFor(model => model.Tarix)</th>
+                    <th>@Html.DisplayNameFor(model => model.Miqdar)</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.ProductCode)</td>
+                        <td>@Html.DisplayFor(modelItem => item.ProductName)</td>
+                        <td>@Html.DisplayFor(modelItem => item.CountryName)</td>
+                        <td>@Html.DisplayFor(modelItem => item.CountryCode)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Tarix)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Miqdar)</td>
+                        <td>
+                            <div class="btn-group" role="group">
+                                <a asp-action="AddOrEdit" asp-route-id="@item.TransactionId" class="btn btn-warning">
+                                    <i class="fas fa-edit"></i> Edit
+                                </a>
+                                <form asp-action="Delete" asp-route-id="@item.TransactionId" class="d-inline">
+                                    <button type="submit" class="btn btn-danger"
+                                            onclick="return confirm('Are you sure to delete this record?')">
+                                        <i class="far fa-trash-alt"></i> Delete
+                                    </button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

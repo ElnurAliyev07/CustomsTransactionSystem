@@ -1,0 +1,77 @@
+﻿@model CustomsTransactionSystem.Models.Transaction
+
+@{
+    ViewBag.Title = "AddOrEdit";
+    Layout = "~/Views/Shared/_index.cshtml";
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-5">
+        <div class="card">
+            <div class="card-header text-white text-center">
+                <div style="display: flex; align-items: center; justify-content: center;">
+                    <img style="width: 60px; height: 60px; margin-right: 10px; border-radius: 50%;" src="/images/icon.jpg" alt="Alternate Text" />
+                    <h4 style="margin-bottom: 0; font-weight: bold; color: #333;">Gömrük İdxal Sistemi</h4>
+                </div>
+            </div>
+            <div class="card-body">
+                <form asp-action="AddOrEdit" autocomplete="off">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="TransactionId" />
+                    <input type="hidden" asp-for="Tarix" />
+                    <div class="form-group">
+                        <label asp-for="ProductCode" class="control-label"></label>
+                        <input asp-for="ProductCode" class="form-control" />
+                        <span asp-validation-for="ProductCode" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ProductName" class="control-label"></label>
+                        <input asp-for="ProductName" class="form-control" />
+                        <span asp-validation-for="ProductName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="CountryName" class="control-label"></label>
+                        <input asp-for="CountryName" class="form-control" />
+                        <span asp-validation-for="CountryName" class="text-danger"></span>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="CountryCode" class="control-label"></label>
+                                <input asp-for="CountryCode" class="form-control" />
+                                <span asp-validation-for="CountryCode" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="Miqdar" class="control-label"></label>
+                                <input asp-for="Miqdar" class="form-control" />
+                                <span asp-validation-for="Miqdar" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt-2">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="submit" value="Təsdiqlə" class="btn btn-primary btn-block" />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <a class="btn btn-secondary btn-block" asp-action="Index">Ümumi Baxış</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="card-footer text-muted text-center">
+                <p>© 2024 Gömrük İdxal Sistemi. Bütün hüquqlar qorunur.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
